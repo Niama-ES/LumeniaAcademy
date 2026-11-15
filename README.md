@@ -66,6 +66,17 @@ Luminia Academy follows a modular client-server architecture that separates pres
 - **Separation of Concerns:** Presentation, application logic, and data management remain independent.
 - **Centralized Security:** Access permissions are enforced through role-based authorization.
 
+  ## 🦋 Frontend Implementations
+
+Luminia Academy explores frontend flexibility through two independent client implementations, both connected to the same backend API.
+
+| Implementation | Technology | Repository |
+|:---|:---|:---|
+| Frontend 1 | React | Current repository |
+| Frontend 2 | Angular | [View Angular Repository ↗](https://github.com/reem77-abd/Lumenia-Accademy) |
+
+Both implementations consume the same REST API, demonstrating the separation between presentation and business logic.
+
 ## 🦋 Technology Stack
 
 | Component | Technologies |
@@ -96,18 +107,7 @@ The interface transforms abstract learning progress into a visual experience, co
 LuminiaAcademy/
 │
 ├── backend/
-│   ├── ...
-│   └── package.json
-│
-├── frontend-react/
-│   ├── src/
-│   ├── public/
-│   └── package.json
-│
-├── frontend-angular/
-│   ├── src/
-│   └── package.json
-│
+├── frontend/
 ├── .gitignore
 └── README.md
 ```
