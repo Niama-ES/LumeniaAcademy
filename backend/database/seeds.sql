@@ -1,0 +1,74 @@
+PRAGMA foreign_keys = ON;
+
+-- =========================
+-- CLEAN RESET (DEV ONLY)
+-- Order matters because of foreign keys
+-- =========================
+DELETE FROM audit_logs;
+DELETE FROM consultations;
+DELETE FROM announcements;
+DELETE FROM chapters;
+DELETE FROM courses;
+DELETE FROM users;
+
+-- =========================
+-- USERS
+-- NOTE: password_hash values are placeholders
+-- Replace with bcrypt hashes later
+-- =========================
+INSERT INTO users (id, name, email, password_hash, role, is_active) VALUES
+(1, 'Admin Lumenia', 'admin@lumenia.com', 'HASH_ADMIN', 'ADMIN', 1),
+(2, 'Prof. Rim', 'rim.teacher@lumenia.com', 'HASH_TEACHER', 'TEACHER', 1),
+(3, 'Student Nour', 'nour.student@lumenia.com', 'HASH_STUDENT', 'STUDENT', 1);
+
+-- =========================
+-- COURSES (owned by teacher id = 2)
+-- =========================
+INSERT INTO courses (id, title, description, teacher_id) VALUES
+(1, 'Intelligent Systems', 'Foundations of intelligent and adaptive systems.', 2);
+
+-- =========================
+-- CHAPTERS (ordered)
+-- =========================
+INSERT INTO chapters (id, course_id, title, content, order_index) VALUES
+(1, 1, 'Introduction to Intelligent Systems',
+ 'This chapter introduces the basic concepts of intelligent systems.', 1),
+
+(2, 1, 'Problem Solving and Search',
+ 'This chapter covers search algorithms and problem-solving techniques.', 2);
+
+-- =========================
+-- ANNOUNCEMENTS (GLOBAL, teacher posts)
+-- =========================
+INSERT INTO announcements (id, teacher_id, title, content) VALUES
+(1, 2, 'Welcome to Lumenia',
+ 'Welcome everyone! Please start by reading Chapter 1.'),
+
+(2, 2, 'Course Update',
+ 'Chapter 2 is now available. Make sure to consult it.');
+
+-- =========================
+-- CONSULTATIONS (student activity)
+-- student_id = 3
+-- =========================
+INSERT INTO consultations (student_id, course_id, chapter_id, consulted_at) VALUES
+(3, 1, 1, datetime('now', '-2 days')),
+(3, 1, 2, datetime('now', '-1 days'));
+
+-- =========================
+-- AUDIT LOGS
+-- ONLY login + delete actions
+-- =========================
+
+-- Login success (student)
+INSERT INTO audit_logs (user_id, action, meta_json, created_at) VALUES
+(3, 'LOGIN_SUCCESS', '{"ip":"127.0.0.1"}', datetime('now', '-2 days'));
+
+-- Login failure (unknown email)
+INSERT INTO audit_logs (user_id, action, meta_json, created_at) VALUES
+(NULL, 'LOGIN_FAILED', '{"email":"fake@mail.com","reason":"wrong_password"}', datetime('now', '-1 days'));
+
+-- Example DELETE action (teacher deletes a chapter)
+INSERT INTO audit_logs (user_id, action, entity_type, entity_id) VALUES
+(2, 'DELETE_ACTION', 'CHAPTER', 99);
+INSERT OR IGNORE INTO users (name, email, password_hash, role, is_active) VALUES ('Admin Lumenia', 'admin@lumenia.com', '..rRyku/5MJC03dO', 'ADMIN', 1);
