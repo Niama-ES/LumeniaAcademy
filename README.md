@@ -1,89 +1,87 @@
-# Luminia Academy — Frontend
+<div align="center">
 
-Neural-aesthetic React frontend connecting to the Luminia Academy backend.
+# 🦋 Luminia Academy
 
-## Stack
-- **React 18** (Vite)
-- **No extra UI libraries** — pure CSS with neural network canvas animations
-- **JWT auth** via localStorage
-- **API proxy** to backend via Vite dev server
+### Intelligent Learning Management Platform
 
-## Project Structure
+<p>
+  <em>A connected learning experience for students, teachers, and administrators.</em>
+</p>
 
-```
-luminia-frontend/
-├── src/
-│   ├── main.jsx              # React entry point
-│   ├── App.jsx               # Root routing / auth gates
-│   ├── auth.jsx              # Auth context (login, register, logout)
-│   ├── api.js                # Full API client (auth, courses, chapters, announcements, admin...)
-│   ├── styles.css            # Full design system CSS
-│   └── components/
-│       ├── Canvases.jsx      # All neural canvas animations (NeuralBg, LearningCore, SystemGrid...)
-│       ├── Landing.jsx       # Landing page (hero, features, roles, CTA)
-│       ├── Auth.jsx          # Login + Register pages
-│       ├── Sidebar.jsx       # Role-based sidebar navigation
-│       ├── StudentDashboard.jsx
-│       ├── CoursesPage.jsx   # Course list + chapter drill-down
-│       ├── ChapterView.jsx   # Chapter reading view
-│       ├── AnnouncementsPage.jsx
-│       ├── TeacherDashboard.jsx
-│       ├── MyCourses.jsx     # Teacher: create/manage courses & chapters
-│       ├── TeacherAnnouncements.jsx
-│       └── AdminPage.jsx     # Admin: user management + audit logs
-├── index.html
-├── vite.config.js            # Proxies /api → http://localhost:3001
-└── package.json
-```
+![React](https://img.shields.io/badge/Frontend-React_18-355B82?style=flat-square)
+![Vite](https://img.shields.io/badge/Build-Vite-355B82?style=flat-square)
+![JavaScript](https://img.shields.io/badge/Language-JavaScript-355B82?style=flat-square)
+![JWT](https://img.shields.io/badge/Auth-JWT-355B82?style=flat-square)
+![API](https://img.shields.io/badge/Communication-REST_API-355B82?style=flat-square)
 
-## Setup & Run
+</div>
 
-### 1. Install dependencies
-```bash
-npm install
-```
+---
 
-### 2. Start the backend first
-Make sure the Luminia backend is running on port **3001** (default).
+## 🦋 Overview
 
-### 3. Start the frontend dev server
-```bash
-npm run dev
-```
+**Luminia Academy** is a web-based learning platform designed to bring students, teachers, and administrators together in a centralized digital learning environment.
 
-Frontend runs on **http://localhost:3000**. All `/api` calls are automatically proxied to `http://localhost:3001`.
+The frontend provides dedicated interfaces based on user roles, allowing students to access educational content, teachers to manage courses, and administrators to oversee platform activity.
 
-### 4. Build for production
-```bash
-npm run build
-# Outputs to dist/
-```
-Deploy the `dist/` folder. Configure your server/nginx to proxy `/api` → backend.
+Built with React and Vite, the application combines a responsive interface with a distinctive neural-inspired visual identity, featuring animated network visualizations and interactive dashboard elements.
 
-## Backend Port
+## 🦋 Key Features
 
-If your backend runs on a different port, edit `vite.config.js`:
+- **Role-Based Dashboards:** Dedicated interfaces for students, teachers, and administrators.
+- **Student Learning Environment:** Access courses, explore chapters, and follow platform announcements.
+- **Course Management:** Teachers can create, edit, and delete courses and their chapters.
+- **Authentication:** Login, registration, and session management using JWT.
+- **Administration:** User management, account activation/deactivation, and audit log access.
+- **Interactive Visualizations:** Canvas-based neural networks, learning activity maps, and animated system grids.
+- **API Integration:** Centralized API client connecting the frontend to the backend services.
 
-```js
-proxy: {
-  '/api': {
-    target: 'http://localhost:3001', // ← change this
-    changeOrigin: true,
-  }
-}
-```
+## 🦋 Features by User Role
 
-## Features by Role
+| Role | Capabilities |
+|:---|:---|
+| **Student** | Learning dashboard, course access, chapter reading, announcements |
+| **Teacher** | Dashboard statistics, course and chapter management, announcements |
+| **Admin** | User management, account activation/deactivation, audit logs |
 
-| Role | Pages |
-|------|-------|
-| **STUDENT** | Dashboard (Learning Core canvas), Courses + Chapters, Announcements |
-| **TEACHER** | Stats + Neural Activity Map, My Courses (create/edit/delete), Announcements |
-| **ADMIN** | System Grid (all users canvas), User management (activate/deactivate), Audit logs |
+## 🦋 Technology Stack
 
-## Design System
+| Component | Technologies |
+|:---|:---|
+| Frontend Framework | React 18 |
+| Build Tool | Vite |
+| Styling | CSS3 |
+| Authentication | JWT, localStorage |
+| API Communication | REST API |
+| Visualizations | HTML Canvas |
+| Typography | Syne, DM Sans |
 
-- **Colors:** Navy `#060D1A`, Teal `#4ECDC4`, Amber `#F7B731`, Violet `#A29BFE`
-- **Fonts:** Syne (headings), DM Sans (body) — loaded from Google Fonts
-- **Animations:** Canvas-based neural network with pulsing nodes, traveling signal beads
-- **Glass cards:** `rgba(10,22,40,0.72)` background with teal-glow borders
+## 🦋 Design & Visual Identity
+
+- **Color Palette:** Deep navy `#060D1A`, teal `#4ECDC4`, amber `#F7B731`, and violet `#A29BFE`.
+- **Typography:** Syne for headings and DM Sans for body text.
+- **Neural Animations:** Canvas-based network visualizations featuring pulsing nodes and traveling signal particles.
+- **Glassmorphism:** Translucent interface cards with subtle glowing borders.
+- **User Experience:** Consistent visual language across all role-based dashboards.
+
+## 🦋 Project Structure
+
+```text
+src/
+├── App.jsx
+├── auth.jsx
+├── api.js
+├── styles.css
+└── components/
+    ├── Canvases.jsx
+    ├── Landing.jsx
+    ├── Auth.jsx
+    ├── Sidebar.jsx
+    ├── StudentDashboard.jsx
+    ├── CoursesPage.jsx
+    ├── ChapterView.jsx
+    ├── AnnouncementsPage.jsx
+    ├── TeacherDashboard.jsx
+    ├── MyCourses.jsx
+    ├── TeacherAnnouncements.jsx
+    └── AdminPage.jsx
